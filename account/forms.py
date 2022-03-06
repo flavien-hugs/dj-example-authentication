@@ -21,3 +21,8 @@ class LoginForm(forms.Form):
             self.fields[field].widget.attrs.update(
                 {'class': 'form-control shadow-none'}
             )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email and not password:
+            raise forms.ValidationError("user does not exist.")
