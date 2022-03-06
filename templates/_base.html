@@ -22,9 +22,9 @@
 
     <title>
         {% block head_title %}
-            {{ page_title|capfirst|default_if_none:"Accueil" }}
+            {{ page_title|default_if_none:"Accueil"|capfirst }}
         {% endblock head_title %}
-        &smid; Example Authentication
+        &smid; Blogger
     </title>
 
 </head>
