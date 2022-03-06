@@ -1,31 +1,82 @@
 {% extends '_base.html' %}
 
 {% block body_content %}
-    <div class="container-md">
-        <div class="row">
-            <div class="col-lg-7 offset-lg-5">
-                <div class="ugf-content pt270">
-                    <h2>Let's go! <span>Join with our Platform</span></h2>
-                    <p>Inter your valid email address and complete some easy steps <br> for register your account</p>
+    <div class="col-lg-5 col-md-6">
+        <div class="ugf-form-block-header">
+            <h1>Sign up Now</h1>
+            <p>Inter yor valid email address and password
+                <br> to register your account
+            </p>
+        </div>
 
-                    <form method="post" action="/register/" class="form-flex email-form">
-                        {% csrf_token %}
+        <div class="ugf-third-party-login">
+            <a href="#">
+                <img src="{{ STATIC_PREFIX }}img/account-icon/google.png" alt="google">
+                Sign up with Google
+            </a>
+            <a href="#">
+                <img src="{{ STATIC_PREFIX }}img/account-icon/facebook.png" alt="facebook">
+                Sign up with Facebook
+            </a>
+        </div>
 
-                        <div class="form-group">
-                            <label for="inputMail">Eamil Address</label>
-                            <input value="{{ data.email }}" type="email" name="email" placeholder="example@domain.com" class="form-control" id="inputMail" required>
-                        </div>
-                        <button type="submit" class="btn">
-                            <span>Let's Start</span>
-                            <i class="las la-arrow-right"></i>
-                        </button>
-                    </form>
+        <div class="ugf-block-separator">
+            <p>Or</p>
+        </div>
+
+        <div class="ugf-input-block">
+            <form action="#">
+                <div class="form-group">
+                    <input type="email" class="form-control" id="inputText" placeholder="Email Address">
+                    <label for="input-text">
+                        <i class="las la-envelope"></i>
+                    </label>
                 </div>
-            </div>
+                <div class="form-group pass-block">
+                    <input type="password" class="form-control" id="inputPass" placeholder="Password">
+                    <label for="input-pass">
+                        <i class="las la-unlock"></i>
+                    </label>
+                    <div class="pass-toggler-btn">
+                        <i id="eye" class="lar la-eye"></i>
+                        <i id="eye-slash" class="lar la-eye-slash"></i>
+                    </div>
+                    <div class="error-block">
+                        <div class="icon incomplete-pass">
+                            <i class="las la-exclamation-circle"></i>
+                        </div>
+                        <div class="validation-requirement">
+                            <ul>
+                                <li class="incomplete-item">At least 8 characters</li>
+                                <li>At least one letter</li>
+                                <li>At least one number</li>
+                                <li>At least one special character</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlValidation1" required="required">
+                        <label class="custom-control-label" for="customControlValidation1">I accept the
+                            <a href="#" target="_blank">Term of Conditions</a>
+                            and
+                            <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Sign up Now</button>
+            </form>
         </div>
     </div>
-
-    <div class="alternet-access">
-        <p>Already have an account? <a href="/">Log in now!</a></p>
-    </div>
 {% endblock body_content %}
+
+
+{% block alternet_access %}
+    {% url 'account:login_url' as login %}
+    <div class="alternet-access">
+        <p>Already have an account?
+            <a href="{{ login }}">Log in now!</a>
+        </p>
+    </div>
+{% endblock alternet_access %}
