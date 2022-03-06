@@ -40,13 +40,21 @@
         <div class="ugf-third-party-login">
             <a href="#">
                 <img src="{{ STATIC_PREFIX }}img/account-icon/google.png" alt="google">
-                Sign up with Google</a>
+                Sign up with Google
+            </a>
             <a href="#">
                 <img src="{{ STATIC_PREFIX }}img/account-icon/facebook.png" alt="facebook">
-                Sign up with Facebook</a>
+                Sign up with Facebook
+            </a>
         </div>
     </div>
 {% endblock body_content %}
 
 {% block alternet_access %}
+    {% url 'account:register_url' as register %}
+    <div class="alternet-access">
+        <p>Don't have an account ?
+            <a href="{{ register }}">Sign up now !</a>
+        </p>
+    </div>
 {% endblock alternet_access %}
