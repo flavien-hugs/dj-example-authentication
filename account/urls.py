@@ -23,5 +23,11 @@ urlpatterns = [
         route='logout/',
         view=views.account_logout_view,
         name='logout_url'
+    ),
+
+    path(
+        route='profile/',
+        view=views.account_dashboard,
+        name="profile_url"
     )
 ]
