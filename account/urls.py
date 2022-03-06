@@ -15,7 +15,13 @@ urlpatterns = [
 
     path(
         route='login/',
-        view=views.accoun_login_page,
+        view=views.account_login_view,
         name='login_url'
+    ),
+
+    path(
+        route='logout/',
+        view=views.account_logout_view,
+        name='logout_url'
     )
 ]
