@@ -28,7 +28,7 @@ class LoginForm(forms.Form):
 class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = ('username', 'email', 'first_name', 'last_name', 'role')
+        fields = ('username', 'email', 'role')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,8 +36,3 @@ class SignupForm(UserCreationForm):
             self.fields[field].widget.attrs.update(
                 {'class': 'form-control shadow-none'}
             )
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if not email and not password:
-            raise forms.ValidationError("Adresse email is exist.")
