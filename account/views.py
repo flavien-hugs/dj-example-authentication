@@ -1,11 +1,10 @@
 # account.views.py
 
-from django.shortcuts import render
-
 
 from django.contrib import messages
 from django.views.generic import View
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 
 from account.forms import LoginForm
 
@@ -32,20 +31,21 @@ class AccountRegisterView(View):
 account_register_view = AccountRegisterView.as_view()
 
 
-def login_page(request):
+def login_view(request):
     form = LoginForm()
     message = ''
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            f_email = form.cleaned_data['email']
-            f_password = form.cleaned_data['password']
-            user = authenticate(email=f_email, password=f_password)
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(email=email, password=password)
 
-            if user is not None:
+            if user is not None and user.is_active:
                 login(request, user)
-                message = f"Hello, {user.first_name.title()} ! Vous êtes connecté."
+                message = messages.success(request, f"Hello, {user.first_name.title()} ! Vous êtes connecté.")
+                return redirect('account:profile')
             else:
                 message = "Identifiants invalides."
 
@@ -59,4 +59,12 @@ def login_page(request):
     return render(request, template, context)
 
 
-accoun_login_page = login_page
+account_login_view = login_view
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('account:login')
+
+
+account_logout_view = logout_view
