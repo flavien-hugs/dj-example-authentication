@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
 
+{% load widget_tweaks %}
+
 {% block body_content %}
     <div class="col-lg-5 col-md-6">
         <div class="ugf-form-block-header">
@@ -25,16 +27,32 @@
         </div>
 
         <div class="ugf-input-block">
-            <form action="#">
+            <form method="post">
+                {{ form.errors }}
                 <div class="form-group">
-                    <input type="email" class="form-control" id="inputText" placeholder="Email Address">
-                    <label for="input-text">
+                    {% render_field form.role placeholder=form.role.label %}
+                    <label for="{{ form.role.id_for_label }}">
+                        <i class="las la-check"></i>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    {% render_field form.email placeholder=form.email.label %}
+                    <label for="{{ form.email.id_for_label }}">
                         <i class="las la-envelope"></i>
                     </label>
                 </div>
+
+                <div class="form-group">
+                    {% render_field form.username placeholder=form.username.label %}
+                    <label for="{{ form.username.id_for_label }}">
+                        <i class="las la-user"></i>
+                    </label>
+                </div>
+
                 <div class="form-group pass-block">
-                    <input type="password" class="form-control" id="inputPass" placeholder="Password">
-                    <label for="input-pass">
+                    {% render_field form.password1 placeholder=form.password1.label %}
+                    <label for="{{ form.password1.id_for_label }}">
                         <i class="las la-unlock"></i>
                     </label>
                     <div class="pass-toggler-btn">
@@ -55,6 +73,17 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group pass-block">
+                    {% render_field form.password2 placeholder=form.password2.label %}
+                    <label for="{{ form.password2.id_for_label }}">
+                        <i class="las la-unlock"></i>
+                    </label>
+                    <div class="pass-toggler-btn">
+                        <i id="eye" class="lar la-eye"></i>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div class="custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customControlValidation1" required="required">
@@ -65,6 +94,8 @@
                         </label>
                     </div>
                 </div>
+
+                {% csrf_token %}
                 <button type="submit" class="btn">Sign up Now</button>
             </form>
         </div>
