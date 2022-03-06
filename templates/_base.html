@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static compress %}{% get_static_prefix as STATIC_PREFIX %}
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/lib/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/lib/line-awesome.min.css" />
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/main.css" />
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/theme.css" />
+    {% endcompress css %}
+
+    <link rel="icon" href="{{ STATIC_PREFIX }}img/favicon.png">
+    <link rel="apple-touch-icon" href="{{ STATIC_PREFIX }}img/icon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_PREFIX }}img/icon/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_PREFIX }}img/icon/icon-114x114.png">
+
+    <title>
+        {% block head_title %}
+            {{ page_title|capfirst }}
+        {% endblock head_title %}
+        &smid; Example Authentication
+    </title>
+
+</head>
+
+<body>
+
+    {% block body %}
+        <div class="ugf-block ugf-bg ugf-bg-1">
+            <div class="ugf-logo">
+                <a href="/">
+                    <img src="{{ STATIC_PREFIX }}img/logo/logo-dark.png" class="img-fluid" alt="{{ page_tile|title }}">
+                </a>
+            </div>
+
+            <div class="form-block">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        {% block body_content %}
+                        {% endblock body_content %}
+                    </div>
+                </div>
+            </div>
+
+            {% block alternet-access %}
+            {% endblock alternet-access %}
+        </div>
+    {% endblock body %}
+
+    {% compress js %}
+        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/lib/popper.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/custom.js"></script>
+    {% endcompress js %}
+</body>
+
+</html>

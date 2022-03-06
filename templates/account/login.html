@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+
+{% load widget_tweaks %}
+
+
+{% block body_content %}
+    <div class="col-lg-5 col-md-6">
+        <div class="ugf-form-block-header">
+            <h1>Login</h1>
+            <p>
+                Inter yor email address and password
+                <br> to get access account
+            </p>
+        </div>
+
+        <div class="ugf-input-block">
+            <form method="post">
+                <div class="form-group">
+                    {% render_field form.email placeholder=form.email.label %}
+                    <label for="{{ form.email.id_for_label }}"><i class="las la-envelope"></i></label>
+                </div>
+                <div class="form-group pass-block">
+                    {% render_field form.password placeholder=form.password.label %}
+                    <label for="{{ form.password.id_for_label }}"><i class="las la-unlock"></i></label>
+                </div>
+                {% csrf_token %}
+
+                <div class="form-group check-flex">
+                    <div class="forget-pass">
+                        <a href="#">Forget password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Sign in Now</button>
+            </form>
+        </div>
+
+        <div class="ugf-block-separator">
+            <p>Or</p>
+        </div>
+        <div class="ugf-third-party-login">
+            <a href="#">
+                <img src="{{ STATIC_PREFIX }}img/account-icon/google.png" alt="google">
+                Sign up with Google</a>
+            <a href="#">
+                <img src="{{ STATIC_PREFIX }}img/account-icon/facebook.png" alt="facebook">
+                Sign up with Facebook</a>
+        </div>
+    </div>
+{% endblock body_content %}

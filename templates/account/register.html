@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+
+{% block body_content %}
+    <div class="container-md">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-5">
+                <div class="ugf-content pt270">
+                    <h2>Let's go! <span>Join with our Platform</span></h2>
+                    <p>Inter your valid email address and complete some easy steps <br> for register your account</p>
+
+                    <form method="post" action="/register/" class="form-flex email-form">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="inputMail">Eamil Address</label>
+                            <input value="{{ data.email }}" type="email" name="email" placeholder="example@domain.com" class="form-control" id="inputMail" required>
+                        </div>
+                        <button type="submit" class="btn">
+                            <span>Let's Start</span>
+                            <i class="las la-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alternet-access">
+        <p>Already have an account? <a href="/">Log in now!</a></p>
+    </div>
+{% endblock body_content %}
