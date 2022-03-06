@@ -4,6 +4,7 @@
 from django.contrib import messages
 from django.views.generic import View
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from account.forms import LoginForm
@@ -45,7 +46,7 @@ def login_view(request):
             if user is not None and user.is_active:
                 login(request, user)
                 message = messages.success(request, f"Hello, {user.first_name.title()} ! Vous êtes connecté.")
-                return redirect('account:profile')
+                return redirect('account:profile_url')
             else:
                 message = "Identifiants invalides."
 
@@ -68,3 +69,8 @@ def logout_view(request):
 
 
 account_logout_view = logout_view
+
+
+@login_required
+def dashboard(request):
+    return render(request, "_base.html")
