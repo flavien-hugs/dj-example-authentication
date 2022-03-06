@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+python-dotenv = "*"
+whitenoise = {extras = ["brotli"], version = "*"}
+django-widget-tweaks = "*"
+django-compressor = "*"
+argon2-cffi = "*"
+gunicorn = "*"
+pillow = "*"
+redis = "*"
+hiredis = "*"
+django-imagekit = "*"
+
+[dev-packages]
+pydocstyle = "*"
+pep8 = "*"
+
+[requires]
+python_version = "3.8"
