@@ -47,9 +47,8 @@ def login_view(request):
                 login(request, user)
                 message = messages.success(request, f"Hello, {user.first_name.title()} ! Vous êtes connecté.")
                 return redirect('account:profile_url')
-            else:
-                message = "Identifiants invalides."
-
+    else:
+        message = "Identifiants invalides."
 
     context = {
         "form": form,
@@ -60,7 +59,46 @@ def login_view(request):
     return render(request, template, context)
 
 
-account_login_view = login_view
+# account_login_view = login_view
+
+
+class AccountLoginView(View):
+
+    form_class = LoginForm
+    template_name = "account/login.html"
+
+    def get(self, request):
+        form = self.form_class()
+        message = ""
+        context = {
+            "form": form,
+            "message": message,
+            "page_title": "Login your account"
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(email=email, password=password)
+            if user is not None and user.is_active:
+                login(request, user)
+                message = messages.success(
+                    request, f"Hello, {user.first_name.title()} ! Vous êtes connecté.")
+                return redirect('account:profile_url')
+        message = "Identifiants invalides."
+
+        context = {
+            "form": form,
+            "message": message,
+            "page_title": "Login your account"
+        }
+        return render(request, self.template_name, context)
+
+
+account_login_view = AccountLoginView.as_view()
 
 
 def logout_view(request):
@@ -74,3 +112,6 @@ account_logout_view = logout_view
 @login_required
 def dashboard(request):
     return render(request, "_base.html")
+
+
+account_dashboard = dashboard
