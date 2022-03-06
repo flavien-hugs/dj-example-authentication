@@ -1,13 +1,35 @@
 # account.views.py
 
-
+from django.conf import settings
 from django.contrib import messages
 from django.views.generic import View
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
-from account.forms import LoginForm
+from account.forms import LoginForm, SignupForm
+
+
+
+def register_view(request):
+
+    form = SignupForm()
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(settings.LOGIN_REDIRECT_URL)
+
+    template = "account/register.html"
+    context = {
+        "form": form,
+        "page_title": "Sign up Now"
+    }
+    return render(request, template, context)
+
+
+account_register_view = register_view
 
 
 class AccountRegisterView(View):
@@ -29,7 +51,7 @@ class AccountRegisterView(View):
         return render(request, self.template_name, context)
 
 
-account_register_view = AccountRegisterView.as_view()
+# account_register_view = AccountRegisterView.as_view()
 
 
 def login_view(request):
