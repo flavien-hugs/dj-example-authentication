@@ -1,10 +1,11 @@
 # account.models.py
 
-
 from django.db import models
+from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 
+from account.managers import UserManager
 from helpers.utilitary import upload_image_to
 
 from imagekit.models import ImageSpecField
@@ -22,10 +23,11 @@ class User(AbstractUser):
     file_prepend = "upload/user/profile/"
 
     ROLE_CHOICES = (
-        (CREATOR, 'Créateur'),
-        (SUBSCRIBER, 'Abonné(e)')
+        (CREATOR, 'Creator'),
+        (SUBSCRIBER, 'Subscriber')
     )
 
+    username = None
     email = models.EmailField(
         verbose_name='adresse email',
         max_length=80, unique=True,
@@ -56,6 +58,19 @@ class User(AbstractUser):
         format='JPEG',
         options={'quality': 90}
     )
+    ip_address = models.GenericIPAddressField(
+        max_length=180,
+        protocol='both',
+        unpack_ipv4=False,
+        verbose_name='adresse ip',
+        **NULL_AND_BLANK
+    )
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     class Meta:
         ordering = ['-date_joined']
@@ -64,9 +79,22 @@ class User(AbstractUser):
 
 
     def __str__(self):
-        return self.first_name
+        return self.get_short_name()
 
     def get_profile_image(self):
         if self.formatted_image:
             return self.formatted_image.url
         return 'https://via.placeholder.com/300'
+
+
+@receiver([models.signals.pre_save], sender=User)
+def delete_old_image(sender, instance, *args, **kwargs):
+    if instance.pk:
+        try:
+            old_image = User.objects.get(pk=instance.pk).picture
+        except User.DoesNotExist:
+            return
+        else:
+            new_image = instance.picture.url
+            if old_image and old_image.url != new_image:
+                old_image.delete(save=False)
