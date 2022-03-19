@@ -95,17 +95,17 @@
 }
 
 .theme-bg {
-    background: url(../images/bg/theme-9-bg.jpg) no-repeat center right;
+    background: url(../img/bg/theme-9-bg.jpg) no-repeat center right;
     background-size: cover;
 }
 
 .flat-grey-bg {
-    background: url(../images/bg/flat-grey-bg.jpg) no-repeat center right;
+    background: url(../img/bg/flat-grey-bg.jpg) no-repeat center right;
     background-size: cover;
 }
 
 .final-bg {
-    background: url(../images/bg/final-bg.jpg) no-repeat center bottom;
+    background: url(../img/bg/final-bg.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
@@ -188,7 +188,7 @@
     left: 0;
     height: 30px;
     width: 30px;
-    content: url("../images/check.png");
+    content: url("../img/check.png");
 }
 
 .ugf-wrapper .ugf-sidebar.sidebar-steps .steps .step span {
@@ -224,32 +224,32 @@
 }
 
 .ugf-sidebar-bg {
-    background: url(../images/bg/sidebar-bg.jpg) no-repeat center bottom;
+    background: url(../img/bg/sidebar-bg.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
 .ugf-sidebar-bg-2 {
-    background: url(../images/bg/sidebar-bg-2.jpg) no-repeat center bottom;
+    background: url(../img/bg/sidebar-bg-2.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
 .ugf-sidebar-bg-3 {
-    background: url(../images/bg/sidebar-bg-3.jpg) no-repeat center bottom;
+    background: url(../img/bg/sidebar-bg-3.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
 .ugf-sidebar-bg-4 {
-    background: url(../images/bg/sidebar-bg-4.jpg) no-repeat center bottom;
+    background: url(../img/bg/sidebar-bg-4.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
 .ugf-sidebar-bg-5 {
-    background: url(../images/bg/sidebar-bg-5.jpg) no-repeat center bottom;
+    background: url(../img/bg/sidebar-bg-5.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
 .ugf-sidebar-bg-6 {
-    background: url(../images/bg/sidebar-bg-6.jpg) no-repeat center bottom;
+    background: url(../img/bg/sidebar-bg-6.jpg) no-repeat center bottom;
     background-size: cover;
 }
 
@@ -344,7 +344,7 @@
     position: absolute;
     top: 1px;
     left: 0;
-    content: url(../images/arrow-left-grey.png);
+    content: url(../img/arrow-left-grey.png);
 }
 
 .ugf-content h2 {
@@ -572,7 +572,7 @@
 
 .ugf-content form.account-form .form-group.check-gender .custom-radio .custom-control-input:checked~.custom-control-label::after {
     background-image: none;
-    content: url(../images/check-white.svg);
+    content: url(../img/check-white.svg);
 }
 
 .ugf-content form.account-form .form-group.check-gender .custom-radio .custom-control-label {
