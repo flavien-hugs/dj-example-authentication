@@ -19,6 +19,18 @@ urlpatterns = [
         name='login_url'
     ),
 
+    path(route='activate/<uidb64>/<token>/',
+        view=views.account_activate_account_view,
+        name='activate'),
+
+    path(route='set-new-password/<uidb64>/<token>/',
+        view=views.account_set_new_password_view,
+        name='set_new_password'),
+
+    path(route='reset-password/',
+        view=views.account_reset_password_view,
+        name='reset_password'),
+
     path(
         route='logout/',
         view=views.account_logout_view,
@@ -26,7 +38,7 @@ urlpatterns = [
     ),
 
     path(
-        route='profile/',
+        route='',
         view=views.account_dashboard,
         name="profile_url"
     )
