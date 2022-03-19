@@ -11,7 +11,7 @@ from django.contrib.messages import constants as messages
 from dotenv import dotenv_values
 
 
-config_credentials = dotenv_values(".env")
+env = dotenv_values(".env")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,18 +22,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config_credentials['SECRET_KEY']
+SECRET_KEY = env['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = config_credentials['DEBUG']
+DEBUG = env['DEBUG']
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
 ADMIN_URL = 'admin/'
 APPEND_SLASH = True
-DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'valereobei@pm.me'
+DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'unsta.inc@pm.me'
 
 
 # Application definition
@@ -255,5 +255,23 @@ CACHES = {
 
 AUTH_USER_MODEL = "account.User"
 
-LOGIN_URL = 'account:login'
+LOGIN_URL = 'account:login_url'
 LOGIN_REDIRECT_URL = 'account:profile_url'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    }
+}
