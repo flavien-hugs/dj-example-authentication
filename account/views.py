@@ -137,7 +137,7 @@ account_register_view = RegistrationView.as_view()
 
 class LoginView(View):
 
-    template_name = 'accounts/login.html'
+    template_name = 'account/login.html'
 
     def get(self, request):
         ctx = {
