@@ -18,29 +18,3 @@ freeze: ## Pin current dependencies
 migrate: ## Make and run migrations
 	$(MANAGE) makemigrations
 	$(MANAGE) migrate
-
-collectstatic: ## Run collectstatic
-	$(MANAGE) collectstatic --noinput
-
-changepassword: ## Change password superuser
-	$(MANAGE) changepassword unstainc@pm.me
-
-.PHONY: test
-test: ## Run tests
-	$(MANAGE) --verbosity=0 --parallel --failfast
-
-.PHONY: createsuperuser
-createsuperuser: ## Run the Django server
-	$(MANAGE) createsuperuser --username="unstainc@pm.me" --email="unstainc@pm.me"
-
-dumpdata: ## dump data
-	$(MANAGE) dumpdata --indent=4 --natural-foreign --natural-primary -e contenttypes --format=json account.user > fixtures/users.json
-
-loaddata: ## load data
-	$(MANAGE) loaddata fixtures/*.json
-
-.PHONY: coverage
-coverage: ## Test with coverage and generate htmlcov
-	coverage run --source "blog,course" manage.py test -v 2
-	coverage html
-	coverage report
