@@ -97,7 +97,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -107,7 +106,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -138,7 +136,6 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -148,7 +145,6 @@ LANGUAGE_CODE = 'fr'
 USE_I18N = USE_L10N = True
 LANGUAGE_COOKIE_SECURE = True
 DATE_INPUT_FORMATS = ('%d/%m/%Y', '%d-%m-%Y')
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -255,7 +251,20 @@ CACHES = {
 
 AUTH_USER_MODEL = "account.User"
 
+# Config email
+# https://docs.djangoproject.com/fr/4.0/topics/email/
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env.get('EMAIL_HOST')
+EMAIL_PORT = env.get('EMAIL_PORT')
+EMAIL_USE_TLS = env.get('EMAIL_USE_TLS')
+EMAIL_HOST_USER = env.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.get('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = SERVER_EMAIL = 'no-reply@unsta.net'
+
+LOGOUT_URL = '/'
 LOGIN_URL = 'account:login_url'
+SIGNUP_URL = 'account:register_url'
 LOGIN_REDIRECT_URL = 'account:profile_url'
 
 LOGGING = {
