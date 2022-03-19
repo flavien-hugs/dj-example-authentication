@@ -43,25 +43,10 @@ class RegistrationView(View):
         }
 
         email = data.get('email')
-        phone = data.get('phone')
-
-        last_name = data.get('last_name')
-        first_name = data.get('first_name')
-
         password = data.get('password')
         password2 = data.get('password2')
 
         mail_to_lower = email.lower()
-
-        if len(password) < 6:
-            messages.add_message(
-                request, messages.ERROR,
-                f"""
-                Les mots de passe doivent comporter au moins 6 caractères.
-                Vous avez utilisé {len(password)} caractères.
-                """
-            )
-            context['has_error'] = True
 
         if password != password2:
             messages.add_message(
@@ -84,11 +69,12 @@ class RegistrationView(View):
             if (
                 get_user_model().objects.get(email=mail_to_lower)
             ):
-                messages.add_message(
+                message = messages.add_message(
                     request, messages.ERROR,
                     f"Cette adresse email '{mail_to_lower}' est déjà utilisé !"
                 )
                 context['has_error'] = True
+                context['page_title'] = message
         except Exception as identifier:
             pass
 
@@ -97,9 +83,6 @@ class RegistrationView(View):
 
         user = get_user_model().objects.create_user(email=mail_to_lower)
         user.set_password(password)
-        user.first_name = first_name
-        user.last_name = last_name
-        user.role = role
         user.is_active = False
         user.ip_address = get_client_ip(request)
         user.save()
@@ -125,11 +108,11 @@ class RegistrationView(View):
         messages.add_message(
             request, messages.SUCCESS,
             f"""
-            Hello {user.full_name},
+            Hello {user.email},
             Votre compte créé avec succès.
             """
         )
-        return redirect(reverse(settings.LOGIN_URL))
+        return redirect(settings.LOGIN_URL)
 
 
 account_register_view = RegistrationView.as_view()

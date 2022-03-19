@@ -92,9 +92,7 @@ def delete_old_image(sender, instance, *args, **kwargs):
     if instance.pk:
         try:
             old_image = User.objects.get(pk=instance.pk).picture
-        except User.DoesNotExist:
-            return
-        else:
-            new_image = instance.picture.url
-            if old_image and old_image.url != new_image:
+            if old_image and old_image.url != instance.picture.url:
                 old_image.delete(save=False)
+        except:
+            pass
