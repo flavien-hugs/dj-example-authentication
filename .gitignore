@@ -67,6 +67,7 @@ venv.bak/
 
 Pipfile.lock
 *.sqlite3
+db.sqlite3
 *.lock
 logs/*.log
 media/
