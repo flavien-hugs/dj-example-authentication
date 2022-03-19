@@ -192,7 +192,7 @@ account_activate_account_view = ActivateAccountView.as_view()
 
 class ResetPasswordEmailView(View):
 
-    template_name = 'accounts/password_reset_email.html'
+    template_name = 'account/password_reset_email.html'
 
     def get(self, request):
         ctx = {
@@ -214,7 +214,7 @@ class ResetPasswordEmailView(View):
             current_site = get_current_site(request)
             email_subject = '[Réinitialiser votre mot de passe.]'
             message = render_to_string(
-                'accounts/reset_user_password.html',
+                'account/reset_user_password.html',
                 {
                     'domain': current_site,
                     'uuid': urlsafe_base64_encode(force_bytes(user[0].pk)),
@@ -299,7 +299,7 @@ class SetNewPasswordView(View):
 
         if context['has_error'] == True:
             return render(
-                request, 'accounts/set_new_password.html',
+                request, 'account/set_new_password.html',
                 context
             )
 
