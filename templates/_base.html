@@ -1,99 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    {% load static compress %}{% get_static_prefix as STATIC_PREFIX %}
+    <head>
+        {% load static compress %}{% get_static_prefix as STATIC_PREFIX %}
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {% compress css %}
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}lib/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}lib/css/line-awesome.min.css" />
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}lib/css/owl.carousel.min.css" />
+        {% compress css %}
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}lib/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}lib/css/line-awesome.min.css" />
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}lib/css/owl.carousel.min.css" />
 
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/main.css" />
-    <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/theme.css" />
-    {% endcompress css %}
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/main.css" />
+        <link rel="stylesheet" href="{{ STATIC_PREFIX }}css/theme.css" />
+        {% endcompress css %}
 
-    <link rel="icon" href="{{ STATIC_PREFIX }}img/favicon.png">
-    <link rel="apple-touch-icon" href="{{ STATIC_PREFIX }}img/icon/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_PREFIX }}img/icon/icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_PREFIX }}img/icon/icon-114x114.png">
+        <link rel="icon" href="{{ STATIC_PREFIX }}img/favicon.png">
+        <link rel="apple-touch-icon" href="{{ STATIC_PREFIX }}img/icon/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ STATIC_PREFIX }}img/icon/icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ STATIC_PREFIX }}img/icon/icon-114x114.png">
 
-    <title>
-        {% block head_title %}
-        {{ page_title|default_if_none:"Accueil"|capfirst }}
-        {% endblock head_title %}
-        &smid; Blogger
-    </title>
+        <title>
+            {% block head_title %}
+            {{ page_title|default_if_none:"Accueil"|capfirst }}
+            {% endblock head_title %}
+            &smid; Blogger
+        </title>
 
-</head>
+    </head>
 
-<body>
-    <div class="ugf-wrapper theme-bg">
-        <div class="ugf-content-block">
-            <div class="logo">
-                <a href="/">
-                    <img src="{{ STATIC_PREFIX }}img/logo/logo-dark.png" class="dark-logo" alt="{{ page_tile|title }}">
-                </a>
-            </div>
-
-            <div class="container-md">
-                <div class="row">
-                    <div class="col-lg-7 offset-lg-5">
-                        {% block body_content %}{% endblock body_content %}
+    <body>
+        {% block body %}
+            <div class="ugf-wrapper theme-bg">
+                <div class="ugf-content-block">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="{{ STATIC_PREFIX }}img/logo/logo-dark.png" class="dark-logo" alt="{{ page_tile|title }}">
+                        </a>
                     </div>
-                </div>
-            </div>
 
-            {% block alternet_access %}
-            {% endblock alternet_access %}
-        </div>
-
-        <div class="ugf-sidebar flex-bottom ugf-sidebar-bg">
-            <div class="testimonial-carousel owl-carousel">
-                <div class="item">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <h5 class="name">Ronna E. Gomez</h5>
-                    <span class="designation">CEO, Google</span>
-                </div>
-                <div class="item">
-                    <div class="quote">
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                        <h5 class="name">Ronna E. Gomez</h5>
-                        <span class="designation">CEO, Google</span>
+                    <div class="container-md">
+                        <div class="row">
+                            <div class="col-lg-7 offset-lg-5">
+                                {% block body_content %}{% endblock body_content %}
+                            </div>
+                        </div>
                     </div>
+
+                    {% block alternet_access %}
+                    {% endblock alternet_access %}
                 </div>
-                <div class="item">
-                    <div class="item">
-                        <div class="quote">
+
+                <div class="ugf-sidebar flex-bottom ugf-sidebar-bg">
+                    <div class="testimonial-carousel owl-carousel">
+                        <div class="item">
                             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                             <h5 class="name">Ronna E. Gomez</h5>
                             <span class="designation">CEO, Google</span>
                         </div>
+                        <div class="item">
+                            <div class="quote">
+                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                <h5 class="name">Ronna E. Gomez</h5>
+                                <span class="designation">CEO, Google</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item">
+                                <div class="quote">
+                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                                    <h5 class="name">Ronna E. Gomez</h5>
+                                    <span class="designation">CEO, Google</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clients">
+                        <div class="client">
+                            <img src="{{ STATIC_PREFIX }}img/client/1.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="client">
+                            <img src="{{ STATIC_PREFIX }}img/client/2.png" class="img-fluid" alt="">
+                        </div>
                     </div>
                 </div>
+
+                {% compress js %}
+                <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/jquery.min.js"></script>
+                <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/popper.min.js"></script>
+                <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/owl.carousel.min.js"></script>
+
+                <script type="text/javascript" src="{{ STATIC_PREFIX }}js/custom.js"></script>
+                {% endcompress js %}
             </div>
-            <div class="clients">
-                <div class="client">
-                    <img src="{{ STATIC_PREFIX }}img/client/1.png" class="img-fluid" alt="">
-                </div>
-                <div class="client">
-                    <img src="{{ STATIC_PREFIX }}img/client/2.png" class="img-fluid" alt="">
-                </div>
-            </div>
-        </div>
-
-        {% compress js %}
-        <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/popper.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_PREFIX }}lib/js/owl.carousel.min.js"></script>
-
-        <script type="text/javascript" src="{{ STATIC_PREFIX }}js/custom.js"></script>
-        {% endcompress js %}
-</body>
-
+        {% endblock body %}
+    </body>
 </html>
