@@ -5,7 +5,6 @@
 {% block body_content %}
 <div class="ugf-content pt270">
 
-    {% url "account:login_url" as login_url %}
     {% url "account:register_url" as register_url %}
     {% url "account:reset_password" as reset_password_url %}
 
@@ -41,16 +40,15 @@
             <i class="las la-arrow-right"></i>
         </button>
     </form>
-
 </div>
 {% endblock body_content %}
 
 
 {% block alternet_access %}
-{% url 'account:login_url' as login %}
-<div class="alternet-access">
-    <p>Already have an account?
-        <a href="{{ login }}">Log in now!</a>
-    </p>
-</div>
+    {% url 'account:login_url' as login %}
+    <div class="alternet-access">
+        <p>Already have an account?
+            <a href="{{ login }}">Log in now!</a>
+        </p>
+    </div>
 {% endblock alternet_access %}
