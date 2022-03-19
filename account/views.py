@@ -94,6 +94,7 @@ class RegistrationView(View):
             'account/activate.html',
             {
                 'user': user,
+                'scheme': request.scheme,
                 'domain': '127.0.0.1:8000',
                 'uuid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': generate_token.make_token(user)
@@ -109,7 +110,10 @@ class RegistrationView(View):
             request, messages.SUCCESS,
             f"""
             Hello {user.email},
-            Votre compte créé avec succès.
+            nous vous avons envoyé un courriel à
+            <strong>{user.email.lower()}</strong> contenant les
+            instructions sur la façon d'activer votre compte.
+            Consultez votre boîte de réception et cliquez sur le lien fourni.
             """
         )
         return redirect(settings.LOGIN_URL)
@@ -217,6 +221,7 @@ class ResetPasswordEmailView(View):
                 'account/reset_user_password.html',
                 {
                     'domain': current_site,
+                    'scheme': request.scheme,
                     'uuid': urlsafe_base64_encode(force_bytes(user[0].pk)),
                     'token': PasswordResetTokenGenerator().make_token(user[0])
                 }
@@ -236,8 +241,13 @@ class ResetPasswordEmailView(View):
             <strong>{email.lower()}</strong> contenant les
             instructions sur la façon de réinitialiser votre mot de passe.
             Consultez votre boîte de réception et cliquez sur le lien fourni.
-        """)
-        return render(request, self.template_name)
+            """)
+        
+        ctx = {
+            'page_title': "Aide avec le mot de passe",
+        }
+
+        return render(request, self.template_name, ctx)
 
 
 account_reset_password_view = ResetPasswordEmailView.as_view()
@@ -347,7 +357,9 @@ account_logout_view = logout_view
 
 @login_required
 def dashboard(request):
-    return render(request, "_base.html")
+    template = "index.html"
+    context = {"page_title": "Dashboard"}
+    return render(request, template, context)
 
 
 account_dashboard = dashboard
