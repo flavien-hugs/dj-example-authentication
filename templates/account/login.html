@@ -10,6 +10,8 @@
         <h2>Login</h2>
         <p>Inter yor valid email address and Password to login your account</p>
 
+        {% include "includes/_message.html" %}
+        
         <form action="{{ login_url }}" method="post">
             <div class="form-group">
                 <label>Eamil Address</label>
