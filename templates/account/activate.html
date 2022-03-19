@@ -1,6 +1,7 @@
 {% autoescape off %}
 Hello
-{{ user.full_name }},
+{{ user.email }},
+
 veuillez cliquer sur ce lien ci-dessous pour vérifier votre compte
 http://{{ domain }}{% url 'account:activate' uidb64=uuid token=token %}
 {% endautoescape %}
