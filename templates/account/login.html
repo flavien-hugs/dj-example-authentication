@@ -6,42 +6,36 @@
     {% url "account:login_url" as login_url %}
 	{% url "account:reset_password" as reset_password_url %}
 
-    <div class="col-lg-5 col-md-6">
-        <div class="ugf-form-block-header">
-            <h1>Login</h1>
-            <p>
-                Inter yor email address and password
-                <br> to get access account
-            </p>
-        </div>
+    <div class="ugf-content pt270">
+        <h2>Login</h2>
+        <p>Inter yor valid email address and Password to login your account</p>
 
-        <div class="ugf-input-block">
-            <form action="{{ login_url }}" method="post">
-                <div class="form-group">
-                    {% render_field data.email placeholder=data.email.label %}
-                    <label for="{{ data.email.id_for_label }}"><i class="las la-user"></i></label>
-                </div>
-                <div class="form-group pass-block">
-                    {% render_field data.password placeholder=data.password.label %}
-                    <label for="{{ data.password.id_for_label }}"><i class="las la-unlock"></i></label>
-                </div>
-                {% csrf_token %}
+        <form action="{{ login_url }}" method="post">
+            <div class="form-group">
+                <label>Eamil Address</label>
+                <input name="email" value="{{ data.email }}" type="email" placeholder="example@domain.com" class="form-control">
+            </div>
+            <div class="form-group pass-block">
+                <label>Password</label>
+                <input name="password" value="{{ data.password }}" type="password" placeholder="***********" class="form-control">
+            </div>
+            {% csrf_token %}
 
-                <div class="form-group check-flex">
-                    <div class="forget-pass">
-                        <a href="{{ reset_password_url }}">Forget password?</a>
-                    </div>
+            <div class="form-group check-flex justify-content-end mb10">
+                <div class="forget-pass">
+                    <a href="{{ reset_password_url }}">Forget password ?</a>
                 </div>
-                <button type="submit" class="btn">Sign in Now</button>
-            </form>
-        </div>
+            </div>
+            <button type="submit" class="btn btn-md">Sign in Now</button>
+        </form>
     </div>
 {% endblock body_content %}
 
 {% block alternet_access %}
     {% url "account:register_url" as register_url %}
     <div class="alternet-access">
-        <p>Don't have an account ?
+        <p>
+            Don't have an account ?
             <a href="{{ register_url }}">Sign up now !</a>
         </p>
     </div>
