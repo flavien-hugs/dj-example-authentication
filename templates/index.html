@@ -1,13 +1,20 @@
 {% extends '_base.html' %}
 
 {% block body %}
+    {% url "account:logout_url" as logout_url %}
+
     <div class="ugf-wrapper final-bg">
+
         <div class="final-content">
+            
+            {% include "includes/_message.html" %}
+
             <div class="icon">
                 <img src="{{ STATIC_PREFIX }}img/check.png" alt="{{ page_title|slugify }}">
             </div>
             <h2>Complete Account</h2>
             <p>Hey <strong>{{ request.user.email|safe }}</strong> ! Welcome to Anfra, an amazing Interface waiting for you.</p>
+            <a href="{{ logout_url }}" class="btn">Logout Now</a>
         </div>
     </div>
 {% endblock body %}
