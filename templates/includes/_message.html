@@ -1,9 +1,6 @@
 {% if messages %}
     {% for message in messages %}
-        <div class="alert {{ message.tags }} d-flex rounded-0" role="alert">
-            <div class="alert-icon">
-                <i class="ci-check-circle"></i>
-            </div>
+        <div class="alert {{ message.tags }} rounded-0 mt-2" role="alert">
             <div>{{ message|safe }}</div>
         </div>
     {% endfor %}
